@@ -17,7 +17,7 @@ def generate_word_list(length, characters, include_numbers=False, include_symbol
             for password in itertools.product(charset, repeat=length):
                 file.write(''.join(password) + '\n')
 
-def generate_router_password(length=8, algorithm='default', filename='wordlist.txt'):
+def generate_tipical_password(length=8, algorithm='default', filename='wordlist.txt'):
     with open(filename, 'w') as file:
         if algorithm == 'default':
             charset = string.ascii_letters + string.digits
@@ -75,7 +75,7 @@ def main():
     print("====================================")
 
     print("Seleccione el propósito de la word-list:")
-    print("1. Contraseñas de routers")
+    print("1. Tipicas")
     print("2. Basada en una frase o conjunto de palabras")
     print("3. Personalizada")
     print("4. Desde un archivo de diccionario")
@@ -83,9 +83,10 @@ def main():
 
     if choice == '1':
         length = int(input("Longitud de las contraseñas: "))
+        print("====================================\ndefault: ascii + numbers \nrandom: ascii + numbers + simbols \ncommon: split common passwords \npattern: lowercase + numbers  \n====================================")
         algorithm = input("Seleccione el algoritmo para generar las contraseñas (default/random/common/pattern/HEX/OCT/BIN): ")
         filename = input("Ingrese el nombre del archivo para guardar la Word-list: ")
-        generate_router_password(length, algorithm, filename)
+        generate_tipical_password(length, algorithm, filename)
     elif choice == '2':
         phrase = input("Ingrese la frase o conjunto de palabras: ")
         length = int(input("Longitud de las palabras: "))
